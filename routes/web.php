@@ -103,7 +103,8 @@ Route::prefix('blog')->group(function () {
     // Route::post('/logged', function () {
     //     return'you are logged in ';
     // })->name('logged');
-    // Updated POST route to use the controller
+    
+    /* Updated POST route to use the controller */
 Route::post('/logged', [ExampleController::class, 'login'])->name('logged');
 
 
