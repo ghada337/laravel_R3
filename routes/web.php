@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ExampleController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CarController;
 
 /*
 |--------------------------------------------------------------------------
@@ -103,11 +104,15 @@ Route::prefix('blog')->group(function () {
     // Route::post('/logged', function () {
     //     return'you are logged in ';
     // })->name('logged');
-    
+
     /* Updated POST route to use the controller */
 Route::post('/logged', [ExampleController::class, 'login'])->name('logged');
 
 
     Route::get('/control',[ExampleController::class,'show']);
+        
+    Route::get('createCar',[CarController::class,'create'])->name('createCar');
+    //store data into car table
+    Route::post('storeCar',[CarController::class,'store'])->name('storeCar');
 
-
+    Route::get('cars',[CarController::class,'index'])->name('cars');
