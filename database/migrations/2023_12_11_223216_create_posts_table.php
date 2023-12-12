@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
-            $table->string('postTitle', 100);
+            $table->string('title', 100);
             $table->longText('description');
             $table->boolean('published')->default(false);
             $table->string('author');

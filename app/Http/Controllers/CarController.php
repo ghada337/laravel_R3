@@ -45,7 +45,7 @@ class CarController extends Controller
     public function store(Request $request)
     {
         //return $request;
-        return dd ($request->request);
+        //return dd ($request->request);
         // $car = new Car();
         // $car->title = "BMW";
         // $car->description = "BMW description";
