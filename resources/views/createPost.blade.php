@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
+    @include('includes.navpost')
 
 <div class="container mt-5">
     <h2>Create a New Post</h2>

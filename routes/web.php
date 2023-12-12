@@ -117,6 +117,7 @@ Route::post('/logged', [ExampleController::class, 'login'])->name('logged');
     Route::post('storeCar',[CarController::class,'store'])->name('storeCar');
 
     Route::get('cars',[CarController::class,'index'])->name('cars');
+    Route::get('updateCar/{id}',[CarController::class,'edit'])->name('updateCar');
 //@this is for task 4
     Route::get('createPost',[PostController::class,'create'])->name('createPost');
     Route::post('storePost', [PostController::class, 'store'])->name('storePost');

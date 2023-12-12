@@ -7,6 +7,7 @@ use App\Models\Car;
 
 class CarController extends Controller
 {
+    private $columns = ['title', 'description', 'published'];
     /**
      * Display a listing of the resource.
      */
@@ -51,18 +52,31 @@ class CarController extends Controller
         // $car->description = "BMW description";
         // $car->published= 1;
         // $car->save();
-        // return 'Data added successfully';
-        $cars = new Car();
-        $cars->title = $request->title;
-        $cars->description = $request-> description;
-        if(isset($request->published)){
-            $cars->published = 1;
-        }else{
-        $cars->published= 0;
-        }
-        $cars->save();
-        return 'Data added successfully';
+        // return 'Data added successfully';i
+
+            /*@first method */
+    //     $cars = new Car();
+    //     $cars->title = $request->title;
+    //     $cars->description = $request-> description;
+    //     if(isset($request->published)){
+    //         $cars->published = 1;
+    //     }else{
+    //     $cars->published= 0;
+    //     }
+    //     $cars->save();
+    //     return 'Data added successfully';
+            /*end of first method */
+
+            /* @ second method */
+            $data = $request->only($this->columns);
+            $data['published'] = isset($request->published);
+            //the only line below is  to add the data to the model then  my database 
+            Car::create($data);
+            return redirect('cars');
+           /*end of second method */ 
     }
+
+
 
 
     /**
@@ -78,7 +92,7 @@ class CarController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        return view('updateCar');
     }
 
     /**
