@@ -7,7 +7,10 @@ use App\Models\Car;
 
 class CarController extends Controller
 {
+    /**@this for the second method */
     private $columns = ['title', 'description', 'published'];
+/**@end of the second method */
+
     /**
      * Display a listing of the resource.
      */
@@ -70,10 +73,10 @@ class CarController extends Controller
             /* @ second method */
             $data = $request->only($this->columns);
             $data['published'] = isset($request->published);
-            //the only line below is  to add the data to the model then  my database 
+            //the only line below is  to add the data to the model then  my database
             Car::create($data);
             return redirect('cars');
-           /*end of second method */ 
+           /*end of second method */
     }
 
 
@@ -83,8 +86,10 @@ class CarController extends Controller
      * Display the specified resource.
      */
     public function show(string $id)
-    {
-        //
+    {   /**@this the from second method to find the id and show it in the showCar.blade.php */
+        $car = Car::findOrFail($id);
+        return view('showCar', compact('car'));
+        /*@end of the second method*/
     }
 
     /**
@@ -92,7 +97,9 @@ class CarController extends Controller
      */
     public function edit(string $id)
     {
-        return view('updateCar');
+        // @day 5' for the updateCar.blade.php
+        $car = Car::findOrFail($id);
+        return view('updateCar', compact('car'));
     }
 
     /**
@@ -100,7 +107,10 @@ class CarController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $data = $request->only($this->columns);
+        $data['published'] = isset($request->published);
+        Car::where('id', $id)->update($data);
+        return redirect('cars');
     }
 
     /**

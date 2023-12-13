@@ -14,21 +14,21 @@
     @include('includes.nav')
     <div class="container">
         <h2>Update data</h2>
-        <form action="{{ route('cars') }}" method="post">
+        <form action="{{ route('update', $car->id) }}" method="post">
             @csrf
             @method ('put')
             <div class="form-group">
                 <label for="title">Title:</label>
-                <input type="text" class="form-control" id="title" placeholder="Enter title" name="title">
+                <input type="text" class="form-control" id="title" placeholder="Enter title" name="title" value="{{ $car->title }}">
             </div>
             <div class="form-group">
                 <label for="description">description:</label>
-                <textarea class="form-control" name="description" id="" cols="60" rows="3"></textarea>
+                <textarea class="form-control" name="description" id="" cols="60" rows="3"> {{ $car->description }}</textarea>
             </div>
             <div class="checkbox">
-                <label><input type="checkbox" name="published"> Published me</label>
+                <label><input type="checkbox" name="published" @checked($car->published)> Published me</label>
             </div>
-            <button type="submit" class="btn btn-default">Insert</button>
+            <button type="submit" class="btn btn-default">update</button>
         </form>
     </div>
 

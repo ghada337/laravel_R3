@@ -21,7 +21,9 @@
                     <th>title</th>
                     <th>description</th>
                     <th>published</th>
-                    <th>edit</th>
+                    <th>Edit</th>
+                    <th>show</th>
+
                 </tr>
             </thead>
             <tbody>
@@ -39,6 +41,7 @@
                     </td>
                     {{-- <td>{{ $car->published }}</td> --}}
                     <td><a href="updateCar/{{ $car->id }}">Edit</a></td>
+                    <td><a href="showCar/{{ $car->id }}">show</a></td>
                 </tr>
                 @endforeach
             </tbody>

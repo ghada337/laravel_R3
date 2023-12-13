@@ -117,9 +117,17 @@ Route::post('/logged', [ExampleController::class, 'login'])->name('logged');
     Route::post('storeCar',[CarController::class,'store'])->name('storeCar');
 
     Route::get('cars',[CarController::class,'index'])->name('cars');
+
+    //day 5 
     Route::get('updateCar/{id}',[CarController::class,'edit'])->name('updateCar');
+    Route::put('update/{id}',[CarController::class,'update'])->name('update');
+    Route::get('showCar/{id}',[CarController::class,'show'])->name('showCar');
+    // end day 5
+
 //@this is for task 4
     Route::get('createPost',[PostController::class,'create'])->name('createPost');
     Route::post('storePost', [PostController::class, 'store'])->name('storePost');
     Route::get('posts', [PostController::class, 'index'])->name('posts');
+    
+    //@end task 4
 
