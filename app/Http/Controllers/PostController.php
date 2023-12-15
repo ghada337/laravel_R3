@@ -8,9 +8,10 @@ use App\Models\Post;
 
 class PostController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    private $columns =
+    [
+        'title', 'description', 'author', 'published'
+    ];
     public function index()
 
 
@@ -33,19 +34,23 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        $post = new Post();
-        $post->title = $request->title;
-        $post->author = $request->author;
-        $post->description = $request->description;
-        if(isset($request->published)){
-            $post->published = 1;
-        }else{
-        $post->published= 0;
-        }
+        // $post = new Post();
+        // $post->title = $request->title;
+        // $post->author = $request->author;
+        // $post->description = $request->description;
+        // if(isset($request->published)){
+        //     $post->published = 1;
+        // }else{
+        // $post->published= 0;
+        // }
 
-        $post->save();
+        // $post->save();
+        // return 'Post created successfully!';
 
-        return 'Post created successfully!';
+        $here = $request->only($this->columns);
+        $here['published'] = isset($request->published);
+        Post::create($here);
+        return redirect ('posts');
     }
 
     /**
