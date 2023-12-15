@@ -131,3 +131,9 @@ Route::post('/logged', [ExampleController::class, 'login'])->name('logged');
 
     //@end task 4
 
+    //@his for task 5
+
+    Route::get('editPost/{id}',[PostController::class,'edit'])->name('editPost');
+    Route::put('updatePost/{id}',[PostController::class,'update'])->name('updatePost');
+    Route::get('showPost/{id}',[PostController::class,'show'])->name('showPost');
+    //@end task 5

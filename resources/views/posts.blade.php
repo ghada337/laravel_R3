@@ -21,6 +21,7 @@
                     <th>title</th>
                     <th>description</th>
                     <th>author</th>
+                    <th>created_at</th>
                     <th>published</th>
                     <th>Edit</th>
                     <th>show</th>
@@ -33,6 +34,7 @@
                     <td>{{$post->title}}</td>
                     <td>{{$post->description}}</td>
                     <td>{{$post->author}}</td>
+                    <td>{{$post->created_at}}</td>
                     <td>
                         @if($post->published)
                             Yes
@@ -40,7 +42,7 @@
                             No
                         @endif
                     </td>
-                    <td><a href="updatePost/{{ $post->id }}">Edit</a></td>
+                    <td><a href="editPost/{{ $post->id }}">Edit</a></td>
                     <td><a href="showPost/{{ $post->id }}">show</a></td>
                 </tr>
                 @endforeach

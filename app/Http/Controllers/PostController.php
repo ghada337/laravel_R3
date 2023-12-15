@@ -58,7 +58,8 @@ class PostController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $those = Post::findOrFail($id);
+        return view('showPost', compact('those'));
     }
 
     /**
@@ -66,7 +67,8 @@ class PostController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $there= Post::findOrFail($id);
+        return view('updatePost', compact('there'));
     }
 
     /**
@@ -74,7 +76,10 @@ class PostController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $that = $request->only($this->columns);
+        $that['published'] = isset($request->published);
+        Post::where('id', $id)->update($that);
+        return redirect('posts');
     }
 
     /**
