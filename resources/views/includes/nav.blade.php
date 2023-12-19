@@ -6,8 +6,9 @@
         <ul class="nav navbar-nav">
             <li class="active"><a href="{{route('cars')}}">Home</a></li>
             <li><a href="{{route('createCar')}}">insert car</a></li>
-            <li><a href="#">Page 2</a></li>
+            <li><a href="{{route('trashed')}}">trashed</a></li>
             <li><a href="#">Page 3</a></li>
         </ul>
     </div>
 </nav>
+

@@ -6,7 +6,7 @@
         <ul class="nav navbar-nav">
             <li class="active"><a href="{{route('posts')}}">Home</a></li>
             <li><a href="{{route('createPost')}}">insert post</a></li>
-            <li><a href="#">Page 2</a></li>
+            <li><a href="{{route('trashedPost')}}">trashed</a></li>
             <li><a href="#">Page 3</a></li>
         </ul>
     </div>

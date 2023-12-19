@@ -122,7 +122,19 @@ Route::post('/logged', [ExampleController::class, 'login'])->name('logged');
     Route::get('updateCar/{id}',[CarController::class,'edit'])->name('updateCar');
     Route::put('update/{id}',[CarController::class,'update'])->name('update');
     Route::get('showCar/{id}',[CarController::class,'show'])->name('showCar');
+
     // end day 5
+
+    //day 6
+    Route::get('deleteCar/{id}',[CarController::class,'destroy'])->name('deleteCar');
+    /**another way to delete with security
+        Route::delete("delete",[CarController::class,'destroy'])->name('delete');
+    **/
+    Route::get('trashed',[CarController::class,'trashed'])->name('trashed');
+    Route::get('forceDelete/{id}',[CarController::class,'forceDelete'])->name('forceDelete');
+    Route::get('restoreCar/{id}',[CarController::class,'restore'])->name('restoreCar');
+
+    //end day 6
 
 //@this is for task 4
     Route::get('createPost',[PostController::class,'create'])->name('createPost');
@@ -137,3 +149,9 @@ Route::post('/logged', [ExampleController::class, 'login'])->name('logged');
     Route::put('updatePost/{id}',[PostController::class,'update'])->name('updatePost');
     Route::get('showPost/{id}',[PostController::class,'show'])->name('showPost');
     //@end task 5
+
+    //@task6
+    Route::get('deletePost/{id}',[PostController::class,'destroy'])->name('deletePost');
+    Route::get('trashedPost',[PostController::class,'trashed'])->name('trashedPost');
+    Route::get('forceDeletePost/{id}',[PostController::class,'forceDelete'])->name('forceDeletePost');
+    Route::get('restorePost/{id}',[PostController::class,'restore'])->name('restorePost');

@@ -47,7 +47,12 @@ class PostController extends Controller
         // $post->save();
         // return 'Post created successfully!';
 
-        $here = $request->only($this->columns);
+        // $here = $request->only($this->columns);
+        $here = $request->validate([
+            'title' => 'required||max:255',
+            'description' => 'required|string|max:255',
+            'author' => 'required|string|max:255',
+        ]);
         $here['published'] = isset($request->published);
         Post::create($here);
         return redirect ('posts');
@@ -87,6 +92,29 @@ class PostController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        Post::where('id', $id)->delete();
+        return redirect('posts');
     }
+
+    //trash list
+    public function trashed()
+    {
+        $posts = Post::onlyTrashed()->get();
+        return view('trashedPost', compact('posts'));
+    }
+
+    public function forceDelete(string $id)
+    {
+        Post::where('id', $id)->forceDelete();
+        return redirect('posts');
+    }
+
+    public function restore(string $id)
+    {
+        Post::where('id', $id)->restore();
+        return redirect('posts');
+    }
+
 }
+
+

@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>Bootstrap Example</title>
+    <title>trashed posts</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -13,16 +13,15 @@
 <body>
     @include('includes.navpost')
     <div class="container">
-        <h2>posts list</h2>
+        <h2>trashed list</h2>
         <p>The .table-hover class enables a hover state on table rows:</p>
         <table class="table table-hover">
             <thead>
                 <tr>
                     <th>title</th>
                     <th>created_at</th>
-                    <th>Edit</th>
-                    <th>show</th>
-                    <th>Delete</th>
+                    <th>forceDelete</th>
+                    <th>restore</th>
 
                 </tr>
             </thead>
@@ -31,9 +30,10 @@
                 <tr>
                     <td>{{$post->title}}</td>
                     <td>{{$post->created_at}}</td>
-                    <td><a href="editPost/{{ $post->id }}">Edit</a></td>
-                    <td><a href="showPost/{{ $post->id }}">show</a></td>
-                    <td><a href="deletePost/{{ $post->id }}" onclick="return confirm('Are you sure you want to delete?')">Delete</a></td>
+                    <td><a href="forceDeletePost/{{ $post->id }}" onclick="return confirm('Are you sure you want to delete?')"> forceDelete</a></td>
+                    <td>
+                        <a href="restorePost/{{ $post->id }}" onclick="return confirm('Are you sure you want to restore?')">restorePost</a>
+                    </td>
                 </tr>
                 @endforeach
             </tbody>

@@ -13,7 +13,7 @@
 <body>
     @include('includes.nav')
     <div class="container">
-        <h2>cars list</h2>
+        <h2>trashed list</h2>
         <p>The .table-hover class enables a hover state on table rows:</p>
         <table class="table table-hover">
             <thead>
@@ -21,9 +21,8 @@
                     <th>title</th>
                     <th>description</th>
                     <th>published</th>
-                    <th>Edit</th>
-                    <th>show</th>
                     <th>delete</th>
+                    <th>restore</th>
 
                 </tr>
             </thead>
@@ -41,21 +40,13 @@
                         @endif
                     </td>
                     {{-- <td>{{ $car->published }}</td> --}}
-                    <td><a href="updateCar/{{ $car->id }}">Edit</a></td>
-                    <td><a href="showCar/{{ $car->id }}">show</a></td>
                     <td>
-                        <a href="deleteCar/{{ $car->id }}" onclick="return confirm('Are you sure you want to delete?')">Delete</a>
+                        <a href="forceDelete/{{ $car->id }}" onclick="return confirm('Are you sure you want to delete?')">forceDelete</a>
                     </td>
-                    {{-- anther way with secure to delete --}}
-                    {{-- <td>
-                        <form action="{{route('delete')}}" method="post">
-                            @csrf
-                            @method('delete')
-                            <input type="hidden" name="id" value="{{ $car->id }}">
-                            <input type="submit" class="btn btn-danger" value="delete">Delete</>
-                        </form>
-                    </td> --}}
 
+                    <td>
+                        <a href="restoreCar/{{ $car->id }}" onclick="return confirm('Are you sure you want to restore?')">restoreCar</a>
+                    </td>
                 </tr>
                 @endforeach
             </tbody>

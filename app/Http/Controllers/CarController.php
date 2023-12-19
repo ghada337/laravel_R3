@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Car;
+use Illuminate\Support\Facades\Redirect;
 
 class CarController extends Controller
 {
@@ -71,7 +72,11 @@ class CarController extends Controller
             /*end of first method */
 
             /* @ second method */
-            $data = $request->only($this->columns);
+            //data = $request->only($this->columns);
+            $data = $request->validate([
+                'title' => 'required|string|max:50',
+                'description' => 'required|string',]);
+
             $data['published'] = isset($request->published);
             //the only line below is  to add the data to the model then  my database
             Car::create($data);
@@ -118,6 +123,39 @@ class CarController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        Car::where('id', $id)->delete();
+        return redirect('cars');
     }
+
+    /** @anther method to delete the data with secure delete */
+    // public function destroy(Request $request)
+    // {
+    //     $id = $request->id;
+    //     Car::where('id', $id)->delete();
+    //     return redirect('cars');
+    // }
+
+
+    //trash list
+    public function trashed()
+    {
+        $cars = Car::onlyTrashed()->get();
+        return view('trashed', compact('cars'));
+    }
+
+    public function forceDelete(string $id)
+    {
+        Car::where('id', $id)->forceDelete();
+        return redirect('cars');
+    }
+
+    public function restore(string $id)
+    {
+        Car::where('id', $id)->restore();
+        return redirect('cars');
+    }
+
+
 }
+
+
