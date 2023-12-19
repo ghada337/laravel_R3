@@ -31,6 +31,7 @@
             @enderror
             </div>
             <div class="form-group">
+
                 <label for="author">Author:</label>
                 <input type="text" class="form-control" id="author" placeholder="Enter author" name="author"  value="{{ old('author') }}" required>
             @error('author')
