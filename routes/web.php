@@ -136,6 +136,15 @@ Route::post('/logged', [ExampleController::class, 'login'])->name('logged');
 
     //end day 6
 
+    //day 7
+    Route::get('testt', function () {
+        return  view('testt');
+    });
+    Route::get('image', function () {
+        return  view('image');
+    });
+    Route::post('imageUpload', [ExampleController::class, 'upload'])->name('imageUpload');
+
 //@this is for task 4
     Route::get('createPost',[PostController::class,'create'])->name('createPost');
     Route::post('storePost', [PostController::class, 'store'])->name('storePost');

@@ -12,6 +12,13 @@ class ExampleController extends Controller
         return 'welcome to my first controller';
     }
 
+    public function upload(Request $request){
+        $file_extension = $request->image->getClientOriginalExtension();
+        $file_name = time() . '.' . $file_extension;
+        $path = 'assets/images';
+        $request->image->move($path, $file_name);
+        return 'Uploaded';
+    }
     public function login(Request $request)
     {
         // Retrieve email and password from the request
