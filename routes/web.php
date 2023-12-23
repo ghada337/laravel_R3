@@ -165,3 +165,8 @@ Route::post('/logged', [ExampleController::class, 'login'])->name('logged');
     Route::get('forceDeletePost/{id}',[PostController::class,'forceDelete'])->name('forceDeletePost');
     Route::get('restorePost/{id}',[PostController::class,'restore'])->name('restorePost');
     //@end task6
+
+    Route::get('testHome', function () {
+        return 'welcome to medical blog ';
+    });
+    

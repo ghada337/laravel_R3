@@ -129,24 +129,44 @@ class CarController extends Controller
         // Car::where('id', $id)->update($data);
         // return redirect('cars');
 
-        //@task7
-    $messages = $this->messages();
-    $data = $request->validate([
-        'title' => 'required|string|max:50',
-        'description' => 'required|string',
-        'image' => 'sometimes|required|mimes:png,jpg,jpeg|max:2048', // 'sometimes' because the image might not change.
-    ],$messages);
-    $car = Car::where('id', $id)->firstOrFail();
+    //@day 8
 
-    // @that will handle the file upload if a new file is provided.
-    if ($request->hasFile('image')) {
-        $fileName = $this->uploadFile($request->image, 'assets/images');
-        $data['image'] = $fileName;
+        $messages = $this->messages();
+        $data = $request->validate([
+             'title'=>'required|string|max:50',
+             'description'=> 'required|string',
+             'image' => 'sometimes|mimes:png,jpg,jpeg|max:2048',
+            ], $messages);
+
+            if($request->hasFile('image')){
+                $fileName = $this->uploadFile($request->image, 'assets/images');    
+                $data['image'] = $fileName;
+            }
+            
+            $data['published'] = isset($request->published);
+            Car::where('id', $id)->update($data);
+            return redirect('cars');
     }
-    $data['published'] = isset($request->published);
-    $car->update($data);
-    return redirect('cars');
-}
+    //end day 8
+
+    //@task7
+//     $messages = $this->messages();
+//     $data = $request->validate([
+//         'title' => 'required|string|max:50',
+//         'description' => 'required|string',
+//         'image' => 'sometimes|required|mimes:png,jpg,jpeg|max:2048', // 'sometimes' because the image might not change.
+//     ],$messages);
+//     $car = Car::where('id', $id)->firstOrFail();
+
+//     // @that will handle the file upload if a new file is provided.
+//     if ($request->hasFile('image')) {
+//         $fileName = $this->uploadFile($request->image, 'assets/images');
+//         $data['image'] = $fileName;
+//     }
+//     $data['published'] = isset($request->published);
+//     $car->update($data);
+//     return redirect('cars');
+// }
         //@end of task 7
 
 
