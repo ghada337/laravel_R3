@@ -6,8 +6,12 @@ use Illuminate\Http\Request;
 
 use App\Models\Post;
 
+use App\Traits\Common;
+
 class PostController extends Controller
 {
+
+    use Common;
     private $columns =
     [
         'title', 'description', 'author', 'published'
@@ -34,6 +38,7 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
+        
         // $post = new Post();
         // $post->title = $request->title;
         // $post->author = $request->author;
@@ -48,11 +53,17 @@ class PostController extends Controller
         // return 'Post created successfully!';
 
         // $here = $request->only($this->columns);
+
+        $messages = $this->messages();
         $here = $request->validate([
-            'title' => 'required||max:255',
+            'title' => 'required|max:255',
             'description' => 'required|string|max:255',
             'author' => 'required|string|max:255',
-        ]);
+            'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ] , $messages);
+
+        $fileName = $this->uploadFile($request->image, 'assets/images');
+        $here['image'] = $fileName;
         $here['published'] = isset($request->published);
         Post::create($here);
         return redirect ('posts');
@@ -113,6 +124,20 @@ class PostController extends Controller
     {
         Post::where('id', $id)->restore();
         return redirect('posts');
+    }
+
+    public function messages(){
+        return [
+            'title.required' => 'please provide a title',
+            'title.max' => 'title cannot be more than 255 characters',
+            'description.required' => 'please provide a description',
+            'description.max' => 'description cannot be more than 255 characters',
+            'author.required' => 'please provide an author',
+            'author.max' => 'author cannot be more than 255 characters',
+            'image.required'=> 'Please be sure to select an image',
+            'image.mimes'=> 'Incorrect image type',
+            'image.max'=> 'Max file size exceeded',
+        ];
     }
 
 }

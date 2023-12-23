@@ -164,3 +164,4 @@ Route::post('/logged', [ExampleController::class, 'login'])->name('logged');
     Route::get('trashedPost',[PostController::class,'trashed'])->name('trashedPost');
     Route::get('forceDeletePost/{id}',[PostController::class,'forceDelete'])->name('forceDeletePost');
     Route::get('restorePost/{id}',[PostController::class,'restore'])->name('restorePost');
+    //@end task6
