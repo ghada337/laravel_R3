@@ -14,7 +14,7 @@ class CarController extends Controller
     /**@this for the second method */
 
     //private $columns = ['title', 'description', 'published'];
-/**@end of the second method */
+    /**@end of the second method */
 
     /**
      * Display a listing of the resource.
@@ -62,38 +62,38 @@ class CarController extends Controller
         // $car->save();
         // return 'Data added successfully';i
 
-            /*@first method */
-    //     $cars = new Car();
-    //     $cars->title = $request->title;
-    //     $cars->description = $request-> description;
-    //     if(isset($request->published)){
-    //         $cars->published = 1;
-    //     }else{
-    //     $cars->published= 0;
-    //     }
-    //     $cars->save();
-    //     return 'Data added successfully';
-            /*end of first method */
+        /*@first method */
+        //     $cars = new Car();
+        //     $cars->title = $request->title;
+        //     $cars->description = $request-> description;
+        //     if(isset($request->published)){
+        //         $cars->published = 1;
+        //     }else{
+        //     $cars->published= 0;
+        //     }
+        //     $cars->save();
+        //     return 'Data added successfully';
+        /*end of first method */
 
-            /* @ second method */
-            //data = $request->only($this->columns);
-            // @day 7
-                $messages = $this->messages();
-                //end day 7
-            $data = $request->validate([
-                'title' => 'required|string|max:50',
-                'description' => 'required|string',
-                'image' => 'required|mimes:png,jpg,jpeg|max:2048',
-            ],$messages);
+        /* @ second method */
+        //data = $request->only($this->columns);
+        // @day 7
+        $messages = $this->messages();
+        //end day 7
+        $data = $request->validate([
+            'title' => 'required|string|max:50',
+            'description' => 'required|string',
+            'image' => 'required|mimes:png,jpg,jpeg|max:2048',
+        ], $messages);
 
-            $fileName = $this->uploadFile($request->image, 'assets/images');
-                $data['image'] = $fileName;
+        $fileName = $this->uploadFile($request->image, 'assets/images');
+        $data['image'] = $fileName;
 
-            $data['published'] = isset($request->published);
-            //the only line below is  to add the data to the model then  my database
-            Car::create($data);
-            return redirect('cars');
-           /*end of second method */
+        $data['published'] = isset($request->published);
+        //the only line below is  to add the data to the model then  my database
+        Car::create($data);
+        return redirect('cars');
+        /*end of second method */
     }
 
 
@@ -103,7 +103,8 @@ class CarController extends Controller
      * Display the specified resource.
      */
     public function show(string $id)
-    {   /**@this the from second method to find the id and show it in the showCar.blade.php */
+    {
+        /**@this the from second method to find the id and show it in the showCar.blade.php */
         $car = Car::findOrFail($id);
         return view('showCar', compact('car'));
         /*@end of the second method*/
@@ -129,45 +130,45 @@ class CarController extends Controller
         // Car::where('id', $id)->update($data);
         // return redirect('cars');
 
-    //@day 8
+        //@day 8
 
         $messages = $this->messages();
         $data = $request->validate([
-             'title'=>'required|string|max:50',
-             'description'=> 'required|string',
-             'image' => 'sometimes|mimes:png,jpg,jpeg|max:2048',
-            ], $messages);
+            'title' => 'required|string|max:50',
+            'description' => 'required|string',
+            'image' => 'sometimes|mimes:png,jpg,jpeg|max:2048',
+        ], $messages);
 
-            if($request->hasFile('image')){
-                $fileName = $this->uploadFile($request->image, 'assets/images');    
-                $data['image'] = $fileName;
-            }
-            
-            $data['published'] = isset($request->published);
-            Car::where('id', $id)->update($data);
-            return redirect('cars');
+        if ($request->hasFile('image')) {
+            $fileName = $this->uploadFile($request->image, 'assets/images');
+            $data['image'] = $fileName;
+        }
+
+        $data['published'] = isset($request->published);
+        Car::where('id', $id)->update($data);
+        return redirect('cars');
     }
     //end day 8
 
     //@task7
-//     $messages = $this->messages();
-//     $data = $request->validate([
-//         'title' => 'required|string|max:50',
-//         'description' => 'required|string',
-//         'image' => 'sometimes|required|mimes:png,jpg,jpeg|max:2048', // 'sometimes' because the image might not change.
-//     ],$messages);
-//     $car = Car::where('id', $id)->firstOrFail();
+    //     $messages = $this->messages();
+    //     $data = $request->validate([
+    //         'title' => 'required|string|max:50',
+    //         'description' => 'required|string',
+    //         'image' => 'sometimes|required|mimes:png,jpg,jpeg|max:2048', // 'sometimes' because the image might not change.
+    //     ],$messages);
+    //     $car = Car::where('id', $id)->firstOrFail();
 
-//     // @that will handle the file upload if a new file is provided.
-//     if ($request->hasFile('image')) {
-//         $fileName = $this->uploadFile($request->image, 'assets/images');
-//         $data['image'] = $fileName;
-//     }
-//     $data['published'] = isset($request->published);
-//     $car->update($data);
-//     return redirect('cars');
-// }
-        //@end of task 7
+    //     // @that will handle the file upload if a new file is provided.
+    //     if ($request->hasFile('image')) {
+    //         $fileName = $this->uploadFile($request->image, 'assets/images');
+    //         $data['image'] = $fileName;
+    //     }
+    //     $data['published'] = isset($request->published);
+    //     $car->update($data);
+    //     return redirect('cars');
+    // }
+    //@end of task 7
 
 
 
@@ -208,18 +209,15 @@ class CarController extends Controller
         return redirect('cars');
     }
     //day 7
-    public function messages(){
-        return[
-            'title.required'=>'العنوان مطلوب',
-            'title.string'=>'Should be string',
-            'description.required'=> 'should be text',
-            'image.required'=> 'Please be sure to select an image',
-            'image.mimes'=> 'Incorrect image type',
-            'image.max'=> 'Max file size exceeded',
-            ];
+    public function messages()
+    {
+        return [
+            'title.required' => 'العنوان مطلوب',
+            'title.string' => 'Should be string',
+            'description.required' => 'should be text',
+            'image.required' => 'Please be sure to select an image',
+            'image.mimes' => 'Incorrect image type',
+            'image.max' => 'Max file size exceeded',
+        ];
     }
-
-
 }
-
-

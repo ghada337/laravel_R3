@@ -167,6 +167,13 @@ Route::post('/logged', [ExampleController::class, 'login'])->name('logged');
     //@end task6
 
     Route::get('testHome', function () {
-        return 'welcome to medical blog ';
+        return view('testHome');
     });
-    
+    Route::get('404', function () {
+        return view('404');
+    });
+
+    Route::get('contact', function () {
+        return view('contact');
+    });
+
