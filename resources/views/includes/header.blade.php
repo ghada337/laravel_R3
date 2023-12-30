@@ -55,7 +55,7 @@
                                     <li><a href="#">Services </a></li>
                                     <li><a href="#">Pages <i class="icofont-rounded-down"></i></a>
                                         <ul class="dropdown">
-                                            <li><a href="404.html">404 Error</a></li>
+                                            <li><a href="{{route('404')}}">404 Error</a></li>
                                         </ul>
                                     </li>
                                     <li><a href="#">Blogs <i class="icofont-rounded-down"></i></a>
@@ -63,7 +63,7 @@
                                             <li><a href="blog-single.html">Blog Details</a></li>
                                         </ul>
                                     </li>
-                                    <li><a href="contact.html">Contact Us</a></li>
+                                    <li><a href="{{route('contact')}}">Contact Us</a></li>
                                 </ul>
                             </nav>
                         </div>

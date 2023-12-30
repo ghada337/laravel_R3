@@ -1,1 +1,1 @@
-@@extends('layouts.home')
+@extends('layouts.home')

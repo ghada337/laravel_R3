@@ -23,9 +23,20 @@ class ExampleController extends Controller
     {
         // Retrieve email and password from the request
         $email = $request->input('email');
-        $password = $request->input('password'); 
+        $password = $request->input('password');
 
         // Return a view with the email and password
         return view('logged', ['email' => $email, 'password' => $password]);
     }
+
+    public function contact()
+    {
+        return view('contact');
+    }
+
+    public function error()
+    {
+        return view('404');
+    }
 }
+

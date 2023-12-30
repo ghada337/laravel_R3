@@ -173,7 +173,5 @@ Route::post('/logged', [ExampleController::class, 'login'])->name('logged');
         return view('404');
     });
 
-    Route::get('contact', function () {
-        return view('contact');
-    });
-
+    Route::get('contact',[ExampleController::class,'contact'])->name('contact');
+    Route::get('404',[ExampleController::class,'error'])->name('404');

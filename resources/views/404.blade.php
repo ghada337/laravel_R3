@@ -22,3 +22,6 @@
 </section>
 <!--/ End Error Page -->
 @endsection
+@section('Js')
+error page
+@endsection
