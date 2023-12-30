@@ -18,6 +18,10 @@ class CategoryFactory extends Factory
     {
         return [
             'cat_name' => $this->faker->word(),
+            //this is equal the above code "another way to do it"
+            // 'cat_name' => fake()->word(),
+
+
         ];
     }
 }
