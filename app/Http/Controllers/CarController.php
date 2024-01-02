@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Car;
 use Illuminate\Support\Facades\Redirect;
 use App\Traits\Common;
+use App\Models\Category;
 
 
 class CarController extends Controller
@@ -44,8 +45,8 @@ class CarController extends Controller
      * Show the form for creating a new resource.
      */
     public function create()
-    {
-        return view('addCar');
+    {   $categories = Category::get();
+        return view('addCar', compact('categories'));
     }
 
     /**
@@ -84,12 +85,17 @@ class CarController extends Controller
             'title' => 'required|string|max:50',
             'description' => 'required|string',
             'image' => 'required|mimes:png,jpg,jpeg|max:2048',
+            'category_id' => 'required',
         ], $messages);
 
         $fileName = $this->uploadFile($request->image, 'assets/images');
         $data['image'] = $fileName;
 
         $data['published'] = isset($request->published);
+
+
+
+
         //the only line below is  to add the data to the model then  my database
         Car::create($data);
         return redirect('cars');
@@ -117,7 +123,9 @@ class CarController extends Controller
     {
         // @day 5' for the updateCar.blade.php
         $car = Car::findOrFail($id);
-        return view('updateCar', compact('car'));
+        $categories = Category::get();
+        return view('updateCar', compact('car', 'categories'));
+
     }
 
     /**
@@ -137,11 +145,16 @@ class CarController extends Controller
             'title' => 'required|string|max:50',
             'description' => 'required|string',
             'image' => 'sometimes|mimes:png,jpg,jpeg|max:2048',
+            'category_id' => 'required',
         ], $messages);
+        $car = Car::findOrFail($id);
 
         if ($request->hasFile('image')) {
             $fileName = $this->uploadFile($request->image, 'assets/images');
             $data['image'] = $fileName;
+        } else {
+            // Keep the old image if a new one isn't provided
+            $data['image'] = $car->image;
         }
 
         $data['published'] = isset($request->published);

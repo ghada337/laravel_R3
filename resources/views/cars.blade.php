@@ -21,9 +21,11 @@
                     <th>title</th>
                     <th>description</th>
                     <th>published</th>
+                    {{-- <th>image</th> --}}
                     <th>Edit</th>
                     <th>show</th>
                     <th>delete</th>
+
 
                 </tr>
             </thead>
@@ -41,6 +43,13 @@
                         @endif
                     </td>
                     {{-- <td>{{ $car->published }}</td> --}}
+                    {{-- <td>
+                    @if($car->image)
+                <div>
+                    <img src="{{ asset('assets/images/' . $car->image) }}" alt="Car Image" style="max-width: 200px;">
+                </div>
+                @endif
+                    </td> --}}
                     <td><a href="updateCar/{{ $car->id }}">Edit</a></td>
                     <td><a href="showCar/{{ $car->id }}">show</a></td>
                     <td>
