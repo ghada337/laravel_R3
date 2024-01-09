@@ -24,7 +24,7 @@
                                 @enderror
                             </div>
                         </div>
-
+                        {{-- start task 11 adding mobile label --}}
                         <div class="row mb-3">
                             <label for="mobile" class="col-md-4 col-form-label text-md-end">{{ __('Mobile') }}</label>
 
@@ -38,6 +38,7 @@
                                 @enderror
                             </div>
                         </div>
+                        {{-- end task 11 adding mobile label --}}
 
                         <div class="row mb-3">
                             <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>

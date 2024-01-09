@@ -17,7 +17,7 @@ class RegisterController extends Controller
     |--------------------------------------------------------------------------
     |
     | This controller handles the registration of new users as well as their
-    | validation and crphpeation. By default this controller uses a trait to
+    | validation and creation. By default this controller uses a trait to
     | provide this functionality without requiring any additional code.
     |
     */
@@ -53,6 +53,7 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            //task 11 validate mobile
             'mobile' => ['required', 'string', 'max:11'],
         ]);
     }
@@ -69,6 +70,7 @@ class RegisterController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            //task 11 create mobile
             'mobile' => $data['mobile'],
         ]);
     }

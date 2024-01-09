@@ -11,7 +11,7 @@
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
 
-                        <div class="row mb-3">
+                        {{-- <div class="row mb-3">
                             <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
 
                             <div class="col-md-6">
@@ -23,7 +23,24 @@
                                     </span>
                                 @enderror
                             </div>
+                        </div> --}}
+
+                        {{-- // start task 11 adding mobile  --}}
+                            <div class="row mb-3">
+                            <label for="email_or_mobile" class="col-md-4 col-form-label text-md-end">{{ __('Email or Mobile') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="email_or_mobile" type="text" class="form-control @error('email') is-invalid @enderror" name="email"
+                                    value="{{ old('email') }}" required autocomplete="email_or_mobile" autofocus placeholder="Email or Mobile">
+
+                                @error('email')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
                         </div>
+                        {{-- // end task 11 adding mobile  --}}
 
                         <div class="row mb-3">
                             <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>
