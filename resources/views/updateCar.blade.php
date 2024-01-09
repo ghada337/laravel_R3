@@ -50,11 +50,24 @@
                         </option>
                     @endforeach
                 </select>
-                @error('category_id')
-                <div class="alert alert-danger">{{ $message }}</div>
-                @enderror
             </div>
             {{-- @end task 10 --}}
+
+
+{{-- //e.peter method for task 10--}}
+{{-- <div class="form-group">
+    <label for="category">Category:</label>
+    <select name="category_id" id="category">
+        <option value="">Select Category</option>
+        @foreach ($categories as $category)
+            <option value="{{ $category->id }}" @selected($category->id == $car->category_id)>
+                {{ $category->cat_name }}
+            </option>
+        @endforeach
+    </select>
+</div> --}}
+     {{-- //end method --}}
+
 
             <div class="checkbox">
                 <label><input type="checkbox" name="published" @checked($car->published)> Published me</label>

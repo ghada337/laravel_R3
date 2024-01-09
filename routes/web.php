@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CarController;
 use App\Http\Controllers\PostController;
 
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -112,7 +114,7 @@ Route::post('/logged', [ExampleController::class, 'login'])->name('logged');
 
     Route::get('/control',[ExampleController::class,'show']);
 
-    Route::get('createCar',[CarController::class,'create'])->name('createCar');
+    Route::get('createCar',[CarController::class,'create'])->middleware('verified')->name('createCar');
     //store data into car table
     Route::post('storeCar',[CarController::class,'store'])->name('storeCar');
 
@@ -175,3 +177,9 @@ Route::post('/logged', [ExampleController::class, 'login'])->name('logged');
 
     Route::get('contact',[ExampleController::class,'contact'])->name('contact');
     Route::get('404',[ExampleController::class,'error'])->name('404');
+
+
+
+Auth::routes(['verify'=>true]);
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
