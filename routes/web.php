@@ -4,6 +4,8 @@ use App\Http\Controllers\ExampleController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CarController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\Controller;
+use App\Http\Controllers\ContactController;
 
 
 
@@ -183,3 +185,10 @@ Route::post('/logged', [ExampleController::class, 'login'])->name('logged');
 Auth::routes(['verify'=>true]);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+//day 12
+Route::get('test7', [ExampleController::class, 'createSession'])->name('test7');
+Route::get('getSession', [Controller::class, 'getSession'])->name('getSession');
+
+
+Route::post('/contact.store', [ContactController::class, 'store'])->name('contact.store');

@@ -38,5 +38,13 @@ class ExampleController extends Controller
     {
         return view('404');
     }
+
+    //day 12
+    public function createSession(){
+        // session()->put('testSession', 'my first session value');
+        // session()->forget('testSession');
+        session()->flash('testSession', 'my first session value');
+        return 'session created  ';
+    }
 }
 

@@ -39,7 +39,11 @@
                         <h2>Contact With Us</h2>
                         <p>If you have any questions please fell free to contact with us.</p>
                         <!-- Form -->
-                        <form class="form" method="post" action="mail/mail.php">
+
+                        {{-- task 13 --}}
+                        <form class="form" method="post" action="{{ route('contact.store') }}">
+                            @csrf
+                        {{-- task 13 end  --}}
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="form-group">
