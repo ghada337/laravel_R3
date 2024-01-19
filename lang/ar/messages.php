@@ -9,8 +9,8 @@ return [
     |
     */
 
-    'title' => 'Add Car',
-    'newCarData' => ' Add new car data',
-    'formTitle' => 'Title:',
+    'title' => 'إضافة سيارة ',
+    'newCarData' => ' إضافة بيانات سيارة جديدة ',
+    'formTitle' => 'العنوان:',
 
 ];
