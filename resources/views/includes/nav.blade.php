@@ -7,7 +7,8 @@
             <li class="active"><a href="{{route('cars')}}">Home</a></li>
             <li><a href="{{route('createCar')}}">insert car</a></li>
             <li><a href="{{route('trashed')}}">trashed</a></li>
-            <li><a href="#">Page 3</a></li>
+            <li><a href="{{ LaravelLocalization::getLocalizedURL('en') }}">English</a></li>
+            <li><a href="{{ LaravelLocalization::getLocalizedURL('ar') }}"> عربي </a></li>
         </ul>
     </div>
 </nav>

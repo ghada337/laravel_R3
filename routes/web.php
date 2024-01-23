@@ -116,6 +116,13 @@ Route::post('/logged', [ExampleController::class, 'login'])->name('logged');
 
     Route::get('/control',[ExampleController::class,'show']);
 
+    //day 14
+    Route::group(
+        [
+            'prefix' => LaravelLocalization::setLocale(),
+            'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]
+        ], function(){ //...
+
     Route::get('createCar',[CarController::class,'create'])->middleware('verified')->name('createCar');
     //store data into car table
     Route::post('storeCar',[CarController::class,'store'])->name('storeCar');
@@ -139,7 +146,7 @@ Route::post('/logged', [ExampleController::class, 'login'])->name('logged');
     Route::get('restoreCar/{id}',[CarController::class,'restore'])->name('restoreCar');
 
     //end day 6
-
+        });
     //day 7
     Route::get('testt', function () {
         return  view('testt');
@@ -192,3 +199,8 @@ Route::get('getSession', [Controller::class, 'getSession'])->name('getSession');
 
 
 Route::post('/contact.store', [ContactController::class, 'store'])->name('contact.store');
+
+
+
+
+

@@ -20,6 +20,8 @@ return new class extends Migration
             //task 11 add mobile
             $table->string('mobile');
             //end task 11
+            $table->boolean('expired')->default(1);
+
             $table->rememberToken();
             $table->timestamps();
         });
